@@ -19,7 +19,7 @@ def main():
             "url": url,
             "status": response.status_code,
             "headers": dict(response.headers),
-            **checkheaders(response.headers)
+            **check_headers(response.headers)
         })    
     
     with open("report.json", "w") as file:
@@ -32,7 +32,7 @@ def fetch(url):
     return requests.get(url, timeout=5)
 
 
-def checkheaders(headers):
+def check_headers(headers):
     important = ["Content-Security-Policy", "Strict-Transport-Security", "X-Frame-Options", "X-Content-Type-Options"]
     leaky = ["Server", "X-Powered-By"]
     

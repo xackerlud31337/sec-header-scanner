@@ -23,6 +23,7 @@ For every URL, `report.json` contains:
 {
     "url": "https://example.com",
     "status": 200,
+    "headers": {"Server": "Apache/2.4.29", "Content-Type": "text/html"},
     "missing": ["Content-Security-Policy", "Strict-Transport-Security"],
     "leaks": ["Server: Apache/2.4.29"]
 }
@@ -32,6 +33,7 @@ For every URL, `report.json` contains:
 |---|---|
 | `url` | The URL that was scanned |
 | `status` | The HTTP status code (200 = OK, 301/302 = redirect, 404 = not found, 500 = server error) |
+| `headers` | All response headers the server returned |
 | `missing` | Security headers the site should send but doesn't |
 | `leaks` | Headers that reveal information about the server's software |
 
@@ -70,5 +72,5 @@ Only scan websites you own or have permission to test.
 ## Files
 
 - `project.py`: the main program, with `main()`, `fetch()` and `check_headers()`
-- `test_project.py`: pytest tests for the functions
-- `requirements.txt`: the libraries needed (`requests`, `beautifulsoup4`)
+- `test_project.py`: pytest tests for `check_headers()` (run with `pytest`)
+- `requirements.txt`: the libraries needed (`requests`)
